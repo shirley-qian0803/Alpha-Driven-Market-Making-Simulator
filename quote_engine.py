@@ -1,5 +1,5 @@
 import pandas as pd
-
+# A quote is the price at which a market participant is willing to buy (bid) or sell (ask) an asset.
 def generate_quotes(mid_prices: pd.Series, signals: pd.Series, inventory: pd.Series, 
                     base_spread: float = 0.05, inventory_penalty: float = 0.01, signal_strength: float = 0.02) -> pd.DataFrame:
     """
