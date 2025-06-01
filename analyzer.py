@@ -39,10 +39,10 @@ def plot_performance(df: pd.DataFrame, output_prefix="performance"):
 
     plt.xlabel("Time (Minute)")
     plt.tight_layout()
-    plt.savefig(f"{output_prefix}_summary.png")
+    plt.savefig(f"output/{output_prefix}_summary.png")
     plt.close()
 
 if __name__ == "__main__":
-    df = pd.read_csv("executed_trades.csv", index_col="minute")
+    df = pd.read_csv("output/executed_trades.csv", index_col="minute")
     plot_performance(df)
     print("Performance plots saved.")

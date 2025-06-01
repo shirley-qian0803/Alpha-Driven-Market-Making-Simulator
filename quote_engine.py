@@ -35,7 +35,7 @@ def generate_quotes(mid_prices: pd.Series, signals: pd.Series, inventory: pd.Ser
     return pd.DataFrame({ 'bid': bid, 'ask': ask })
 
 if __name__ == "__main__":
-    df = pd.read_csv("market_with_signal.csv", index_col="minute")
+    df = pd.read_csv("output/market_with_signal.csv", index_col="minute")
     inventory = pd.Series(0, index=df.index)  # placeholder: assume 0 inventory
     quotes = generate_quotes(df['mid'], df['signal'], inventory)
     df['quoted_bid'] = quotes['bid']

@@ -39,5 +39,5 @@ def generate_price_series(n_minutes=390, initial_price=100.0, daily_vol=0.2, bas
 
 if __name__ == "__main__":
     df = generate_price_series()
-    df.to_csv("simulated_market.csv")
+    df.to_csv("output/simulated_market.csv")
     print("Generated simulated market data for one trading day.")

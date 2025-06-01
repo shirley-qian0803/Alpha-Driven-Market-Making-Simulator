@@ -43,7 +43,7 @@ def compute_risk_metrics(df: pd.DataFrame) -> dict:
     }
 
 if __name__ == "__main__":
-    df = pd.read_csv("executed_trades.csv", index_col="minute")
+    df = pd.read_csv("output/executed_trades.csv", index_col="minute")
     metrics = compute_risk_metrics(df)
     for key, value in metrics.items():
         print(f"{key}: {value:.4f}")

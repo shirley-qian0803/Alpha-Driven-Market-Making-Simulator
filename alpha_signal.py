@@ -32,5 +32,5 @@ if __name__ == "__main__":
     df = pd.read_csv("simulated_market.csv", index_col="minute")
     signal = generate_momentum_signal(df['mid'], lookback=5)
     df['signal'] = signal
-    df.to_csv("market_with_signal.csv")
+    df.to_csv("output/market_with_signal.csv")
     print("Alpha signal added to market data.")

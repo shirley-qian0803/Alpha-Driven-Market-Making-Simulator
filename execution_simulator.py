@@ -53,7 +53,7 @@ def simulate_execution(df: pd.DataFrame, fill_probability: float = 0.1) -> pd.Da
     return df
 
 if __name__ == "__main__":
-    df = pd.read_csv("market_with_quotes.csv", index_col="minute")
+    df = pd.read_csv("output/market_with_quotes.csv", index_col="minute")
     df = simulate_execution(df, fill_probability=0.2)
     df.to_csv("executed_trades.csv")
     print("Execution simulation completed and saved.")
