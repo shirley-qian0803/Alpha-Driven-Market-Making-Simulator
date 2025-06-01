@@ -6,7 +6,6 @@ This project simulates a **quant trader’s decision-making system** that combin
 
 The simulator integrates both **quant research** (alpha generation) and **quant trading** (execution, risk control), reflecting how modern electronic traders operate in real financial markets.
 
----
 
 ## 🎯 Objectives
 
@@ -15,7 +14,7 @@ The simulator integrates both **quant research** (alpha generation) and **quant 
 - Evaluate strategy performance using key **risk and return metrics**.
 - Lay the groundwork for advanced features such as **volatility awareness, stop-loss logic, and machine learning-driven pricing**.
 
----
+
 
 ## 🧱 Core Components
 
@@ -57,7 +56,7 @@ Calculates and visualizes:
 - Spread captured
 - Signal correlation vs return
 
----
+
 
 ## 📊 Key Metrics
 
@@ -70,7 +69,7 @@ Calculates and visualizes:
 | **Inventory Exposure** | Net position drift |
 | **Hit Rate** | Proportion of profitable trades |
 
----
+
 
 ## 🚀 Advanced Features (To Be Implemented)
 
@@ -84,7 +83,7 @@ Calculates and visualizes:
 | 🎯 **Stop-Loss Logic** | Automatically exit when loss thresholds are hit |
 | 🤖 **Reinforcement Learning** | Train agent to quote optimally via trial and error |
 
----
+
 
 ## 🔧 Technology Stack
 
@@ -93,7 +92,7 @@ Calculates and visualizes:
 - `matplotlib`, `plotly` or `seaborn` for visualization
 - Optional: `scikit-learn`, `gym`, `statsmodels` for modeling/ML
 
----
+
 
 ## 🗂️ Project Structure (Planned)
 
