@@ -109,3 +109,44 @@ market_making_simulator/
 ├── main.py                      # Main simulation loop
 └── README.md                    # Project documentation (this file)
 ```
+
+## 🔧 Future Improvements
+
+This simulator is designed to be extensible. Below are several realistic improvements that can enhance performance, risk control, and robustness:
+
+### 1. 📈 Improve the Alpha Signal
+- Combine multiple signals: momentum, RSI, volatility breakout.
+- Smooth signals using exponential moving averages.
+- Train simple models (e.g. logistic regression) on labeled return data.
+- Try volatility breakout: signal = (price > rolling_high) - (price < rolling_low)
+
+### 2. ⚖️ Improve Inventory Management
+- Set position limits to prevent overexposure.
+- Add risk-weighted inventory penalty (penalty = inventory × volatility).
+- Flatten position at end of day or after sharp drawdown.
+
+### 3. 💥 Enhance Execution Simulation
+- Model fill probability based on quote aggressiveness (distance from mid).
+- Simulate latency and quote staleness.
+- Use historical volume or price action to influence order fills.
+
+### 4. 🔁 Optimize Parameters
+- Tune `signal_strength`, `inventory_penalty`, and `base_spread`.
+- Use grid search or Bayesian optimization.
+- Maximize Sharpe ratio or risk-adjusted return.
+
+### 5. 🎯 Add Risk Controls
+- Stop-loss logic: flatten position if PnL drops below threshold.
+- Volatility-aware quoting: widen spreads in high volatility periods.
+- MTM alerts: pause quoting during drawdowns or large inventory.
+
+### 6. 📝 Logging and Analytics Enhancements
+
+To better understand performance and model behavior:
+- Track hit rate (executed trades / quotes)
+- Log quote aggressiveness
+- Record spread captured per trade
+- Analyze signal correlation with forward returns
+- Monitor trade slippage and delay
+
+These logs are essential for diagnosing weaknesses and guiding improvements in strategy design.
