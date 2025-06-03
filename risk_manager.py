@@ -23,8 +23,12 @@ def compute_risk_metrics(df: pd.DataFrame) -> dict:
     returns = pnl.diff().fillna(0)
 
     total_pnl = pnl.iloc[-1]
-    drawdown = pnl - pnl.cummax()
-    max_drawdown = drawdown.min()
+    # drawdown_pct = (pnl - pnl.cummax()) / pnl.cummax()
+    # max_drawdown = drawdown_pct.min()
+    threshold = 1.0  # Or any buffer
+    valid_pnl = pnl[pnl.cummax() > threshold]
+    drawdown_pct = (valid_pnl - valid_pnl.cummax()) / valid_pnl.cummax()
+    max_drawdown = drawdown_pct.min() * 100 if not drawdown_pct.empty else 0.0
 
     if returns.std() > 0:
         sharpe_ratio = returns.mean() / returns.std() * (252 * 390) ** 0.5  # annualized
@@ -36,7 +40,7 @@ def compute_risk_metrics(df: pd.DataFrame) -> dict:
 
     return {
         'total_pnl': total_pnl,
-        'max_drawdown': max_drawdown,
+        'max_drawdown (%)': max_drawdown,
         'sharpe_ratio': sharpe_ratio,
         'average_inventory': average_inventory,
         'max_inventory': max_inventory

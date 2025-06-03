@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 # A quote is the price at which a market participant is willing to buy (bid) or sell (ask) an asset.
 def generate_quotes(mid_prices: pd.Series, signals: pd.Series, inventory: pd.Series, 
                     base_spread: float = 0.05, inventory_penalty: float = 0.01, signal_strength: float = 0.02) -> pd.DataFrame:
@@ -30,8 +31,23 @@ def generate_quotes(mid_prices: pd.Series, signals: pd.Series, inventory: pd.Ser
     # Signal ↑  Expect price rise → raise quotes
     # bid ↑, ask ↑
 
-    bid = mid_prices - base_spread / 2 - inventory * inventory_penalty + signals * signal_strength
-    ask = mid_prices + base_spread / 2 - inventory * inventory_penalty + signals * signal_strength
+    # Add risk-weighted inventory penalty (penalty = inventory × volatility).
+    rolling_volatility = mid_prices.rolling(window=10).std().fillna(0)
+    adj_vol = 1 + rolling_volatility
+
+    bid = mid_prices - base_spread / 2 - inventory * inventory_penalty * adj_vol + signals * signal_strength
+    ask = mid_prices + base_spread / 2 - inventory * inventory_penalty * adj_vol + signals * signal_strength
+
+    # Set position limits to prevent overexposure.
+    max_inventory = 10  # Example limit, can be adjusted based on strategy
+    for t in range(len(inventory)):
+        if inventory[t] >= max_inventory:
+            # flatten quote: don't buy more
+            bid[t] = np.nan
+        elif inventory[t] <= -max_inventory:
+            # flatten quote: don't sell more
+            ask[t] = np.nan
+
     return pd.DataFrame({ 'bid': bid, 'ask': ask })
 
 if __name__ == "__main__":

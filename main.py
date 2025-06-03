@@ -28,7 +28,7 @@ def main():
     df.to_csv("output/market_with_quotes.csv")
 
     print("✅ Step 4: Simulating trade executions...")
-    df = simulate_execution(df, fill_probability=0.2)
+    df = simulate_execution(df)
     df.to_csv("output/executed_trades.csv")
 
     print("✅ Step 5: Computing risk metrics...")
